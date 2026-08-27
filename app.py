@@ -69,10 +69,15 @@ else:
 
 css = f"""
 <style>
-    /* Hide default Streamlit styles */
-    header[data-testid="stHeader"], #MainMenu, footer,
-    [data-testid="stDecoration"], [data-testid="stStatusWidget"], .stDeployButton {{
+    /* Hide default Streamlit styles but preserve sidebar uncollapse arrow in header */
+    footer, [data-testid="stDecoration"], [data-testid="stStatusWidget"], 
+    .stDeployButton, [data-testid="stAppDeployButton"], 
+    button[aria-label="Manage app"], button[data-testid="stHeaderMenuButton"] {{
         display: none !important;
+    }}
+    header[data-testid="stHeader"] {{
+        background-color: transparent !important;
+        border-bottom: none !important;
     }}
     
     /* Global backgrounds & fonts */
