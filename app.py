@@ -70,9 +70,8 @@ else:
 css = f"""
 <style>
     /* Hide default Streamlit styles */
-    header[data-testid="stHeader"], #MainMenu, footer, [data-testid="stToolbar"],
-    [data-testid="stDecoration"], [data-testid="stStatusWidget"], .stDeployButton,
-    div[data-testid="stSidebarCollapsedControl"] {{
+    header[data-testid="stHeader"], #MainMenu, footer,
+    [data-testid="stDecoration"], [data-testid="stStatusWidget"], .stDeployButton {{
         display: none !important;
     }}
     
@@ -677,7 +676,7 @@ with tabs[0]:
             )
         )
         
-        st.plotly_chart(fig_waterfall, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig_waterfall, use_container_width=True, config={"displayModeBar": True})
         st.markdown("</div>", unsafe_allow_html=True)
         
     with t1_right:
@@ -799,7 +798,7 @@ with tabs[1]:
             height=220
         )
         
-        st.plotly_chart(fig_gauge, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig_gauge, use_container_width=True, config={"displayModeBar": True})
         
         # Demographic distribution bar chart
         rates = [selection_rate_female * 100, selection_rate_male * 100]
@@ -820,7 +819,7 @@ with tabs[1]:
             yaxis=dict(title="Selection Rate (%)", range=[0, 100], gridcolor="rgba(255,255,255,0.04)" if IS_DARK else "rgba(0,0,0,0.04)"),
             height=180
         )
-        st.plotly_chart(fig_dp_bar, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig_dp_bar, use_container_width=True, config={"displayModeBar": True})
         
         st.markdown("</div>", unsafe_allow_html=True)
         
@@ -985,7 +984,7 @@ with tabs[2]:
             legend=dict(orientation="h", yanchor="bottom", y=-0.25, xanchor="center", x=0.5)
         )
         
-        st.plotly_chart(fig_radar, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig_radar, use_container_width=True, config={"displayModeBar": True})
         st.markdown("</div>", unsafe_allow_html=True)
         
     with t3_right:
