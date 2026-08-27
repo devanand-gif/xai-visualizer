@@ -129,12 +129,14 @@ This allows us to render a Plotly waterfall chart starting at the baseline proba
 
 To capture the working model for your project submission, refer to the following scenarios:
 
-### Screenshot 1: The Biased Decision & Gender Penalty
+### Screenshot 1: The Biased Decision & Gender Penalty (Aequitas Terminal)
 *   **Setup:** Select the **Biased Model (Direct Fit)**, set the **Bias Strength** to `60%`, choose a Female profile (e.g., Credit Score `680`, Income `$62,000`, DTI `38%`, Savings `$12,000`).
 *   **Visual Evidence:** 
     1.  The Decision Outcome displays **DENIED** with a red badge.
     2.  The Plotly waterfall chart shows a red bar labeled **Gender** pulling the approval probability down.
     3.  The plain-English explanation highlights that being Female reduced the applicant's approval probability.
+    
+![Biased Decision Screenshot](assets/xai_terminal_biased_denial.jpg)
 
 ### Screenshot 2: The Failure of Feature Masking (Blind Model)
 *   **Setup:** Switch to **Fair Model (Feature Masked)**, keeping the same applicant settings.
@@ -149,6 +151,8 @@ To capture the working model for your project submission, refer to the following
     1.  The applicant's status shifts to **APPROVED** (green badge).
     2.  The population metrics panel displays an **Adverse Impact Ratio (AIR)** above $0.80$, turning green and indicating that the model passes the EEOC 4/5ths rule.
     3.  The **Equal Opportunity Gap** drops below $5\%$, confirming that qualified applicants are treated equitably.
+
+![Mitigated Approval Screenshot](assets/xai_terminal_mitigated_approval.jpg)
 
 ---
 
