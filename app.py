@@ -431,6 +431,28 @@ tpr_male = np.mean(preds_pop[qualified_male]) if np.sum(qualified_male) > 0 else
 tpr_female = np.mean(preds_pop[qualified_female]) if np.sum(qualified_female) > 0 else 0.0
 eog = tpr_male - tpr_female
 
+# ---------------------------------------------------------
+# Dynamic Console Logs Builder (bottom panel)
+# ---------------------------------------------------------
+timestamp_now = datetime.datetime.now().strftime("%H:%M:%S")
+log_lines = [
+    f"<span class='console-info'>[{timestamp_now}] [SYSTEM] Aequitas Core audit engine initialized.</span>",
+    f"<span class='console-info'>[{timestamp_now}] [DATA] Loaded synthetic population N=800. Bias strength injected: 60%.</span>",
+    f"<span class='console-info'>[{timestamp_now}] [MODEL] Loaded model configuration: 'Biased Model (Direct Fit)' ({len(active_features)} features).</span>"
+]
+
+if air < 0.80:
+    log_lines.append(f"<span class='console-error'>[{timestamp_now}] [WARN] Disparate Impact violation: AIR = {air:.2f} (EEOC 80% Rule fails).</span>")
+else:
+    log_lines.append(f"<span class='console-success'>[{timestamp_now}] [AUDIT] Demographic Parity holds: AIR = {air:.2f} (EEOC 80% Rule passes).</span>")
+    
+if abs(eog) >= 0.05:
+    log_lines.append(f"<span class='console-warn'>[{timestamp_now}] [WARN] Equal Opportunity gap is {eog*100:.1f}%. Qualified female penalty detected.</span>")
+else:
+    log_lines.append(f"<span class='console-success'>[{timestamp_now}] [AUDIT] Equal Opportunity condition met. TPR gap is {eog*100:.1f}%.</span>")
+    
+log_lines.append(f"<span class='console-info'>[{timestamp_now}] [EVAL] Audited applicant '{st.session_state.symbol.split('(')[1].replace(')', '')}' ({p_gender}): Probability = {prob_pred*100:.1f}%. Decision: {decision.upper()}.</span>")
+
 # Fill ticker stats
 with ticker_cols[1]:
     # Change % block
